@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>HomePage</title>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+        <link rel="stylesheet" href="stylesheets/home.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+        <!--For Mapbox-->
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+        <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+        <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css" type="text/css">
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+        <script src="javascripts/page.js" defer></script>
+    </head>
+
+    <body id= "dashboard">
+        
+
+        <!--header area start-->
+        <header>
+            <label for="">
+                <i class="fas fa-bars" id="sidebar_btn"></i>
+            </label>
+            <div class="left_area">
+                <h3>Covid-Tracer</h3>
+            </div>
+            <div class="right_area">
+                <a href="#" class="logout_btn">Logout</a>
+            </div>
+        </header>
+        
+        <!--Sidebar start-->
+
+
+        <div class="sidebar">
+            <center>
+                <img src="wtf_bro.jpg" class="profile_image" alt="No image">
+                <h4>Jessica</h4>
+            </center>
+            <a herf="#"><i class="fas fa-home"></i><span>Home</span></a>
+            <a herf="#"><i class="fas fa-user-circle"></i>Self-info</i><span></span></a>
+            <a herf="#"><i class="far fa-calendar-alt"></i></i><span>History</span></a>
+            <a herf="#"><i class="fas fa-tasks"></i><span>Management</span></a>
+            <a herf="#"><i class="fas fa-search"></i><span>Search</span></a>
+        </div>
+        <div class= "content">
+            <div id='map' style='width: 900px; height: 400px;'></div>
+            <script>
+            mapboxgl.accessToken = 'pk.eyJ1Ijoic3VlbmciLCJhIjoiY2tva2x6OXNlMDVnazJvcnozczFmeWJ6NyJ9.2pTv5F3uKQSrY_xXigrjmw';
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [138.599503,-34.9285],
+                zoom: 11.5
+            });
+
+            var coordinatesGeocoder = function (query) {
+            // Match anything which looks like
+            // decimal degrees coordinate pair.
+            var matches = query.match(/^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i);
+            if (!matches) {
+                return null;
+            }
+
+            function coordinateFeature(lng, lat) {
+                return {
+                    center: [lng, lat],
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [lng, lat]
+                    },
+                    place_name: 'Lat: ' + lat + ' Lng: ' + lng,
+                    place_type: ['coordinate'],
+                    properties: {},
+                    type: 'Feature'
+                };
+            }
+
+            var coord1 = Number(matches[1]);
+            var coord2 = Number(matches[2]);
+            var geocodes = [];
+
+            if (coord1 < -90 || coord1 > 90) {
+            // must be lng, lat
+                geocodes.push(coordinateFeature(coord1, coord2));
+            }
+
+            if (coord2 < -90 || coord2 > 90) {
+            // must be lat, lng
+                geocodes.push(coordinateFeature(coord2, coord1));
+            }
+
+            if (geocodes.length === 0) {
+            // else could be either lng, lat or lat, lng
+                geocodes.push(coordinateFeature(coord1, coord2));
+                geocodes.push(coordinateFeature(coord2, coord1));
+            }
+
+            return geocodes;
+            };
+
+            // Add the control to the map.
+            map.addControl(
+            new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                localGeocoder: coordinatesGeocoder,
+                zoom: 4,
+                placeholder: 'Find a place',
+                mapboxgl: mapboxgl
+            })
+            );
+                // // Can use Vue to get different hotspots
+                // var marker = new mapboxgl.Marker().setLngLat([30.5,30.5]).addTo(map);
+            </script>
+        </div>
+    </body>
+</html>
+
+    </body>
+
+</html>
+
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Covid Tracker Login</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="label">Covid-Tracer</h1>
+        <p class="label2">Tracing the information, be safety</p>
+        <form class="login_form" method="post" name="check_in" action="mainPage.html" onsubmit="validate()">
+            <div class="font">Email or Username</div>
+            <input type="text" name="email">
+            <div id="email_error">Please fill up your Email or Phone</div>
+            <div class="font font2">Password</div>
+            <input type="password" name="password">
+            <div id="pass_error">Please fill up your Password</div>
+            <button type="submit">Login</button>
+
+
+            <div class="col">
+              <a href="#" class="fb btn">
+                <i class="fa fa-facebook fa-fw"></i>
+              </a>
+              <a href="#" class="twitter btn">
+                <i class="fa fa-twitter fa-fw"></i>
+              </a>
+              <a href="#" class="google btn">
+                <i class="fa fa-google fa-fw"></i>
+              </a>
+            </div>
+        </form>
+    </div>
+    <script src="javascripts/login.js"></script>
+</body>
+</html>

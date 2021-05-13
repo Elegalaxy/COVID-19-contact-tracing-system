@@ -1,0 +1,129 @@
+body{
+    margin:0;
+    padding:0;
+    font-family:"Montserrat";
+}
+
+header{
+    background:#ff8c00;
+    padding: 40px;
+    padding-bottom: 50px;
+}
+
+.left_area {
+    float:left;
+}
+
+.left_area h3{
+    color:#fff;
+    margin:0px;
+    text-transform: uppercase;
+    font-size:20px;
+    font-weight: bold;
+    font-family: Verdana;
+}
+
+.left_area span{
+    color:rgba(250, 190, 88, 1);
+}
+
+.right_area{
+    box-sizing: border-box;
+}
+
+.logout_btn{
+    text-decoration: none;
+    float:right;
+    font-size:15px;
+    color:#fff;
+    transition: 0.5s;
+    transition-property: background;
+
+}
+
+.logout_btn:hover{
+    background:rgba(250, 190, 88, 1);
+}
+
+.sidebar{
+    background:#2F323A;
+    padding-top:30px;
+    position:absolute;
+    float:left;
+    width:250px;
+    height:100%;
+    flex:1;
+}
+
+.sidebar .profile_image{
+    width:100px;
+    height:100px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+}
+
+.sidebar h4{
+    color:#ccc;
+    margin-top:0;
+    margin-bottom:20px;
+}
+
+.sidebar a{
+    color:#fff;
+    display:block;
+    width:100%;
+    line-height: 70px;
+    text-decoration: none;
+    padding-left:40px;
+    box-sizing: border-box;
+}
+
+.sidebar a:hover{
+    background:rgba(250, 190, 88, 1);
+}
+
+.sidebar i{
+    padding-right: 10px;
+}
+
+.content {
+    margin-left: 20%;
+    margin-top: 20px;
+    display: flex;
+    justify-content:space-around;
+}
+
+#id{
+    margin: 10px;
+}
+
+label #sidebar_btn{
+    z-index:1;
+    color:#fff;
+    position:fixed;
+    cursor:pointer;
+    left:300px;
+    font-size:20px;
+    margin:5px 0;
+    transition:0.5;
+    transition-property:color;
+}
+
+label #sidebar_btn:hover{
+    color:rgba(250, 190, 88, 1);
+}
+
+#check:checked ~ .sidebar{
+    left:-190px;
+}
+
+#check:checked ~ .sidebar a span{
+    display: none;
+}
+
+#check:checked ~ .sidebar a{
+    font-size: 20px;
+    margin-left: 170px;
+    width:80px;
+}
+
