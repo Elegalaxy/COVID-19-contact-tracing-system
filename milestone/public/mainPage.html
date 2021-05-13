@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
         <link rel="stylesheet" href="stylesheets/home.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 
         <!--For Mapbox-->
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
@@ -24,13 +23,8 @@
     </head>
 
     <body id= "dashboard">
-        
-
-        <!--header area start-->
+      <!--header area start-->
         <header>
-            <label for="">
-                <i class="fas fa-bars" id="sidebar_btn"></i>
-            </label>
             <div class="left_area">
                 <h3>Covid-Tracer</h3>
             </div>
@@ -38,10 +32,7 @@
                 <a href="#" class="logout_btn">Logout</a>
             </div>
         </header>
-        
         <!--Sidebar start-->
-
-
         <div class="sidebar">
             <center>
                 <img src="wtf_bro.jpg" class="profile_image" alt="No image">
@@ -119,6 +110,17 @@
                 mapboxgl: mapboxgl
             })
             );
+
+            var geolocate = new mapboxgl.GeolocateControl();
+
+            map.addControl(geolocate);
+
+            geolocate.on('geolocate', function(e) {
+                  var lon = e.coords.longitude;
+                  var lat = e.coords.latitude;
+                  let position = [lon, lat];
+            });
+
                 // // Can use Vue to get different hotspots
                 // var marker = new mapboxgl.Marker().setLngLat([30.5,30.5]).addTo(map);
             </script>
