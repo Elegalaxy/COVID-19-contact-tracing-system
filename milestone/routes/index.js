@@ -7,8 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/validemail', function(req, res, next) {
-  res.sendStatus(200);
-  res.redirect('/mainPage.html');
+  res.redirect('./mainPage.html');
 });
 
 module.exports = router;
